@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Customer Reviews - Chai Corner</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header>
+        <h1>Chai Corner</h1>
+        <p>Fresh Chai, Happy Moments</p>
+    </header>
+
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="menu.html">Menu</a>
+        <a href="gallery.html">Gallery</a>
+        <a href="reviews.html">Reviews</a>
+        <a href="contact.html">Contact</a>
+    </nav>
+
+    <main class="reviews-container">
+
+        <h1 class="reviews-heading">Customer Reviews</h1>
+
+        <p class="reviews-intro">
+            We value your feedback! Share your experience with Chai Corner.
+        </p>
+
+        <!-- Rating Summary Bar -->
+        <div class="reviews-summary">
+            <div class="score-box">
+                <span class="avg-score">4.8</span>
+                <span class="stars">★★★★★</span>
+                <p>Based on customer reviews</p>
+            </div>
+            <div class="summary-badge">
+                🍵 Freshly Brewed Satisfaction
+            </div>
+        </div>
+
+        <!-- Interactive Review Form -->
+        <form class="review-form" id="reviewForm">
+            <h2>Write a Review</h2>
+
+            <label for="customerName">Your Name</label>
+            <input type="text" id="customerName" placeholder="Enter your name" required>
+
+            <label for="rating">Your Rating</label>
+            <select id="rating" required>
+                <option value="">Select Rating</option>
+                <option value="5">5 Stars - Excellent</option>
+                <option value="4">4 Stars - Very Good</option>
+                <option value="3">3 Stars - Good</option>
+                <option value="2">2 Stars - Fair</option>
+                <option value="1">1 Star - Poor</option>
+            </select>
+
+            <label for="feedback">Your Feedback</label>
+            <textarea id="feedback" rows="4" placeholder="Write your experience..." required></textarea>
+
+            <button type="submit">Submit Review</button>
+
+            <p id="review-message" role="status"></p>
+        </form>
+
+        <h2>What Our Customers Say</h2>
+
+        <!-- Grid of Reviews -->
+        <div class="reviews-grid" id="reviewsList">
+
+            <div class="review-card">
+                <div class="card-header">
+                    <div class="avatar">A</div>
+                    <div>
+                        <h3>Ali</h3>
+                        <div class="review-stars">★★★★★</div>
+                    </div>
+                </div>
+                <p class="review-text">The chai was amazing and the atmosphere was very comfortable!</p>
+            </div>
+
+            <div class="review-card">
+                <div class="card-header">
+                    <div class="avatar">A</div>
+                    <div>
+                        <h3>Ahmed</h3>
+                        <div class="review-stars">★★★★☆</div>
+                    </div>
+                </div>
+                <p class="review-text">Great taste and friendly service. Highly recommended!</p>
+            </div>
+
+            <div class="review-card">
+                <div class="card-header">
+                    <div class="avatar">F</div>
+                    <div>
+                        <h3>Fatima</h3>
+                        <div class="review-stars">★★★★★</div>
+                    </div>
+                </div>
+                <p class="review-text">My favourite place to enjoy tea with friends.</p>
+            </div>
+
+        </div>
+
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Chai Corner Café. All Rights Reserved.</p>
+    </footer>
+
+    <script>
+        const reviewForm = document.getElementById("reviewForm");
+        const reviewsList = document.getElementById("reviewsList");
+        const message = document.getElementById("review-message");
+
+        reviewForm.addEventListener("submit", function(event) {
+            event.preventDefault();
+
+            const name = document.getElementById("customerName").value.trim();
+            const rating = Number(document.getElementById("rating").value);
+            const feedback = document.getElementById("feedback").value.trim();
+
+            if (!name || !rating || !feedback) {
+                message.textContent = "Please fill in all fields.";
+                return;
+            }
+
+            const reviewCard = document.createElement("div");
+            reviewCard.className = "review-card";
+
+            const initial = name.charAt(0).toUpperCase();
+
+            reviewCard.innerHTML = `
+                <div class="card-header">
+                    <div class="avatar">${initial}</div>
+                    <div>
+                        <h3>${name}</h3>
+                        <div class="review-stars">${'★'.repeat(rating) + '☆'.repeat(5 - rating)}</div>
+                    </div>
+                </div>
+                <p class="review-text">${feedback}</p>
+            `;
+
+            reviewsList.prepend(reviewCard);
+
+            message.textContent = "Thank you! Your review has been submitted.";
+
+            reviewForm.reset();
+        });
+    </script>
+
+</body>
+</html>
