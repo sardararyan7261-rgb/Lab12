@@ -1,0 +1,36 @@
+body {
+    background-color: white;
+    color: black;
+    font-family: Arial;
+    margin: 20px;
+}
+
+h1 {
+    color: brown;
+}
+
+h2 {
+    color: brown;
+}
+
+table {
+    border-collapse: collapse;
+    width: 60%;
+}
+
+th, td {
+    border: 1px solid black;
+    padding: 8px;
+    text-align: left;
+}
+
+th {
+    background-color: lightgray;
+}
+
+button {
+    background-color: brown;
+    color: white;
+    padding: 8px 15px;
+    border: none;
+}
